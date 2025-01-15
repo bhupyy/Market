@@ -64,12 +64,13 @@ namespace SuperMarket
 
 
 
-                if (rule.SpecialQuantity > 0 || rule.SpecialPrice > 0)
+                if (rule.SpecialQuantity > 0 && rule.SpecialPrice > 0)
                 {
                     // Special pricing 
                     var specialSets = quantity / rule.SpecialQuantity;
+                    var remaining = quantity % rule.SpecialQuantity;
 
-                    total += (specialSets * rule.SpecialPrice);
+                    total += (specialSets * rule.SpecialPrice) + (remaining * rule.UnitPrice);
 
                 }
                 else
